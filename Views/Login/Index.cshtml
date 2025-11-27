@@ -1,0 +1,35 @@
+@model CrudNpN.Models.Usuario
+@{
+    ViewData["Title"] = "Login";
+    Layout = "./_LayoutLogin.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/login.css" />
+}
+
+<div class="text-center login">
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <form class="form" action="/login" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h1 class="display-4">Login</h1>
+        <input asp-for="Email" class="input" placeholder="e-mail" type="email" />
+        <input asp-for="Senha" class="input" placeholder="senha" type="password" />
+        <button class="button" type="submit">Entrar</button>
+        <a asp-action="Cadastro" class="btn btn-link mt-3">Não tem conta? Cadastre-se</a>
+    </form>
+
+</div>

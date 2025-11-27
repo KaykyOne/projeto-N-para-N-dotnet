@@ -1,0 +1,46 @@
+@model CrudNpN.Models.Usuario
+@{
+    ViewData["Title"] = "Cadastro";
+    Layout = "./_LayoutLogin.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/login.css" />
+}
+
+<div class="text-center login">
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <form class="form" asp-action="Cadastro" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h1 class="display-4">Cadastro</h1>
+        <input asp-for="Nome" class="input" placeholder="nome completo" type="text" required />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+        
+        <input asp-for="Email" class="input" placeholder="e-mail" type="email" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+        
+        <input asp-for="Senha" class="input" placeholder="senha" type="password" required />
+        <span asp-validation-for="Senha" class="text-danger"></span>
+        
+        <button class="button" type="submit">Cadastrar</button>
+        <a asp-action="Index" class="btn btn-link mt-3">Já tem conta? Faça login</a>
+    </form>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

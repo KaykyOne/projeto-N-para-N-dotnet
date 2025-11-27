@@ -14,8 +14,7 @@ builder.Services.AddControllersWithViews(options =>
 var connStr = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(opt =>
  opt.UseNpgsql(connStr));
-// (Opcional) mapear DateTime antigo do Npgsql se você migrar projetos antigos:
-// AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var supportedCultures = new[] { new CultureInfo("pt-BR") };
 builder.Services.Configure<RequestLocalizationOptions>(opts =>
 {
@@ -34,5 +33,5 @@ app.UseStaticFiles();
 app.UseRouting();
 app.MapControllerRoute(
  name: "default",
- pattern: "{controller=Home}/{action=Index}/{id?}");
+ pattern: "{controller=Login}/{action=Index}/{id?}");
 app.Run();
